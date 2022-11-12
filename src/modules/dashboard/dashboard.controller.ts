@@ -17,7 +17,7 @@ export class DashboardController {
   }
 
   @Post()
-  createApartament(@Body() data: IApartament) {
+  createApartament(@Body() data: IApartament & { sellerUserId: string }) {
     return this.dashboardService.createApartament(data);
   }
 
