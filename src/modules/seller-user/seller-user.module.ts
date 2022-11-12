@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SellerUser } from 'src/entities/sellerUser.entity';
+import { LoginDashboardMiddleware } from 'src/middleware/loginDashboard.middleware';
 import { SellerUserController } from './seller-user.controller';
 import { SellerUserService } from './seller-user.service';
 
@@ -9,4 +10,14 @@ import { SellerUserService } from './seller-user.service';
   controllers: [SellerUserController],
   providers: [SellerUserService],
 })
-export class SellerUserModule {}
+export class SellerUserModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoginDashboardMiddleware)
+      .exclude(
+        { path: 'create-seller-user', method: RequestMethod.POST },
+        { path: 'login', method: RequestMethod.POST },
+      )
+      .forRoutes('api/v1/seller-user');
+  }
+}

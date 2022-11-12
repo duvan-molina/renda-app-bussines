@@ -9,6 +9,12 @@ export interface ISellerUser {
   lastName: string;
   email: string;
   DOB: string;
+  phoneNumber: string;
   avatar?: string;
+  password: string;
+}
+
+export interface ILoginSellerUser {
+  email: string;
   password: string;
 }

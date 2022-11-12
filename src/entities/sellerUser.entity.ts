@@ -30,6 +30,9 @@ export class SellerUser {
   @Column()
   password: string;
 
+  @Column()
+  phoneNumber: string;
+
   @OneToMany(() => Apartament, (apartament) => apartament.sellerUser)
   apartaments: Apartament[];
 

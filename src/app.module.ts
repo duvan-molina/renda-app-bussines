@@ -7,6 +7,7 @@ import { DataSource } from 'typeorm';
 import { Apartament } from './entities/apartament.entity';
 import { SellerUserModule } from './modules/seller-user/seller-user.module';
 import { SellerUser } from './entities/sellerUser.entity';
+import { ApartamentsModule } from './modules/apartaments/apartaments.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { SellerUser } from './entities/sellerUser.entity';
     }),
     DashboardModule,
     SellerUserModule,
+    ApartamentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

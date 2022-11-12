@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Apartament } from 'src/entities/apartament.entity';
 import { SellerUser } from 'src/entities/sellerUser.entity';
+import { LoginDashboardMiddleware } from 'src/middleware/loginDashboard.middleware';
 import { SellerUserService } from '../seller-user/seller-user.service';
 import { DashboardController } from './dashboard.controller';
 import { DashboardService } from './dashboard.service';
@@ -11,4 +12,8 @@ import { DashboardService } from './dashboard.service';
   controllers: [DashboardController],
   providers: [DashboardService, SellerUserService],
 })
-export class DashboardModule {}
+export class DashboardModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoginDashboardMiddleware).forRoutes('api/v1/dashboard');
+  }
+}
