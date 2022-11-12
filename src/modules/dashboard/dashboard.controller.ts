@@ -12,7 +12,7 @@ export class DashboardController {
   }
 
   @Get('apartament/:apartamentId')
-  getApartamentById(@Param('apartamentId') apartamentId) {
+  getApartamentById(@Param('apartamentId') apartamentId: string) {
     return this.dashboardService.getApartamentById(apartamentId);
   }
 
