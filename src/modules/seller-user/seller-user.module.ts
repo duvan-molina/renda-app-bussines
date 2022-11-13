@@ -15,8 +15,11 @@ export class SellerUserModule {
     consumer
       .apply(LoginDashboardMiddleware)
       .exclude(
-        { path: 'create-seller-user', method: RequestMethod.POST },
-        { path: 'login', method: RequestMethod.POST },
+        {
+          path: 'api/v1/seller-user/create-seller-user',
+          method: RequestMethod.POST,
+        },
+        { path: 'api/v1/seller-user/login', method: RequestMethod.POST },
       )
       .forRoutes('api/v1/seller-user');
   }
