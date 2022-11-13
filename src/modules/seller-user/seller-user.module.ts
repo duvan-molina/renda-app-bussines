@@ -20,6 +20,7 @@ export class SellerUserModule {
           method: RequestMethod.POST,
         },
         { path: 'api/v1/seller-user/login', method: RequestMethod.POST },
+        { path: 'api/v1/seller-user/upload', method: RequestMethod.POST },
       )
       .forRoutes('api/v1/seller-user');
   }

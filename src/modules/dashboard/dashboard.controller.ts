@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { IApartament } from 'src/interfaces';
 import { DashboardService } from './dashboard.service';
 
@@ -6,7 +16,7 @@ import { DashboardService } from './dashboard.service';
 export class DashboardController {
   constructor(private dashboardService: DashboardService) {}
 
-  @Get()
+  @Get('apartaments')
   findAllApartament() {
     return this.dashboardService.findAllApartament();
   }
@@ -16,9 +26,16 @@ export class DashboardController {
     return this.dashboardService.getApartamentById(apartamentId);
   }
 
-  @Post()
-  createApartament(@Body() data: IApartament & { sellerUserId: string }) {
-    return this.dashboardService.createApartament(data);
+  @Post('create-apartament')
+  @UseInterceptors(FilesInterceptor('files'))
+  createApartament(
+    @Body() data: IApartament & { sellerUserId: string },
+    @UploadedFiles() files: Array<Express.Multer.File>,
+  ) {
+    return this.dashboardService.createApartament({
+      ...data,
+      files,
+    });
   }
 
   @Delete()

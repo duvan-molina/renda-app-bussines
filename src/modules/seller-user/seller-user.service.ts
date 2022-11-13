@@ -85,7 +85,7 @@ export class SellerUserService {
     if (!isValidPassword) {
       return {
         success: false,
-        errors: [{ path: 'password', message: 'Password incorrect' }],
+        errors: [{ path: '/login', message: 'Password incorrect' }],
       };
     }
 

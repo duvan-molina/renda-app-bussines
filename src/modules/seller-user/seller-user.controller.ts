@@ -1,9 +1,17 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Req,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ILoginSellerUser, ISellerUser } from 'src/interfaces';
 import { SellerUserService } from './seller-user.service';
-import { Request } from 'express';
+import { Request, Express } from 'express';
 import { SECRET_KEY } from 'src/utils';
 import * as jwt from 'jsonwebtoken';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('api/v1/seller-user')
 export class SellerUserController {
