@@ -29,6 +29,36 @@ export class Apartament {
   @Column()
   price: number;
 
+  @Column()
+  numberOfRooms: number;
+
+  @Column()
+  numberOfBathRooms: number;
+
+  @Column()
+  socialStratum: number;
+
+  @Column({ default: true })
+  pets: boolean;
+
+  @Column()
+  isReting: boolean;
+
+  @Column({ default: false })
+  furnished: boolean;
+
+  @Column()
+  includedServices: boolean;
+
+  @Column()
+  commercialUse: boolean;
+
+  @Column({ default: false })
+  withGarage: boolean;
+
+  @Column({ default: false })
+  motorcycleStorageSpace: boolean;
+
   @ManyToOne(() => SellerUser, (sellerUser) => sellerUser.apartaments)
   sellerUser: SellerUser;
 
