@@ -2,6 +2,8 @@ export interface IApartament {
   title: string;
   description: string;
   address: string;
+  price: number;
+  images?: string[];
 }
 
 export interface ISellerUser {
@@ -28,4 +30,9 @@ export interface ICreateUserResponseAndLogin {
   success: boolean;
   token?: string;
   errors?: IError[];
+}
+
+export interface ICreateApartamentResponse {
+  success: boolean;
+  message?: string;
 }
