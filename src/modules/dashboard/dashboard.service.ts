@@ -45,6 +45,8 @@ export class DashboardService {
         .values({
           ...apartament,
           price: Number(apartament.price),
+          // numberOfRooms: Number(apartament.numberOfRooms),
+          // numberOfBathRooms: Number(apartament.numberOfBathRooms),
           sellerUser,
         })
         .execute();
@@ -54,7 +56,7 @@ export class DashboardService {
 
         const uploadManyFilesPromise = await Promise.all(filesPromise);
 
-        uploadManyFilesPromise.forEach(async (file: any) => {
+        uploadManyFilesPromise.forEach(async (file: { secure_url: string }) => {
           await this.apartamentGalleryRepository
             .createQueryBuilder()
             .insert()
@@ -71,7 +73,6 @@ export class DashboardService {
         message: 'The apartament was successfully created',
       };
     } catch (error) {
-      console.log(error);
       return {
         success: false,
         message: error.message,
